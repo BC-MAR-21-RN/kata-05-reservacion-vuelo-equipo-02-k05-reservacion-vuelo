@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Booking} from './Screens/Booking';
+import {Login} from './Screens/Login';
 
 class App extends Component {
   constructor(props) {
     super(props);
+    this.name = 'App';
     this.state = {
       respuesta: 'si',
     };

@@ -1,16 +1,10 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
+import React, {Component} from 'react';
+import {View} from 'react-native';
 
 export class SignUp extends Component {
-    constructor() {
+  constructor() {}
 
-    }
-
-    render() {
-        return (
-            <View>
-
-            </View>
-        )
-    }
+  render() {
+    return <View />;
+  }
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import { SignUp } from './Screens/SignUp';
 
 class App extends Component {
   constructor(props) {
@@ -10,11 +10,9 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <View>
-        <Text> {this.props.name} </Text>
-      </View>
-    );
+    return (  
+      <SignUp> </SignUp>
+    );  
   }
 }
 

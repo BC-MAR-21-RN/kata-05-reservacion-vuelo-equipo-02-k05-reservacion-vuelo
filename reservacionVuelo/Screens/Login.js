@@ -43,7 +43,7 @@ export class Login extends Component {
           <TouchableOpacity
             accessibilityLabel="Submit login information"
             style={styles.loginOption}>
-            <Text style={styles.loginOptionText}>LOGIN WITH GOOGLE</Text>
+            <Text style={styles.emptyButtonText}>LOGIN WITH GOOGLE</Text>
           </TouchableOpacity>
         </View>
       </View>

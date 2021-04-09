@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
+import { Icon } from 'react-native-vector-icons/icon';
 
 export class SignUp extends Component {
     constructor() {
@@ -10,9 +11,7 @@ export class SignUp extends Component {
     render() {
         return (
             <View style={styles.mainContainer} >
-
                 <Text style={styles.titleStyle}>Sign Up</Text>
-
                 {/**TextInputs */}
                 <View style={styles.textInputSpacing}>
                     <Text style={styles.textInputTitle}>First Name</Text>
@@ -41,7 +40,7 @@ export class SignUp extends Component {
                 <TouchableHighlight style={styles.buttonStyle}>
                     <Text style={styles.buttonTextStyle}>Sign Up</Text>
                 </TouchableHighlight>
-                <Text style={{ textAlign: 'center', color: '#A3ACB9', fontSize: 15, paddingVertical:15 }}>or</Text>
+                <Text style={{ textAlign: 'center', color: '#A3ACB9', fontSize: 15, paddingVertical: 15 }}>or</Text>
                 <TouchableHighlight style={styles.buttonStyle}>
                     <Text style={styles.buttonTextStyle}>Sign Up with Google</Text>
                 </TouchableHighlight>
@@ -69,11 +68,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#A3ACB9',
         fontSize: 15,
-        paddingVertical:10
+        paddingVertical: 10
     },
     textInputTitle: {
         fontSize: 15,
-        paddingBottom:5
+        paddingBottom: 5
     },
     textInputStyle: {
         borderWidth: 1,
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
         width: 350,
         height: 50,
     },
-    textInputSpacing:{
+    textInputSpacing: {
         paddingVertical: 10
     },
     checkBoxAlignment: {

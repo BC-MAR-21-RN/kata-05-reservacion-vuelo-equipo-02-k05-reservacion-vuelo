@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
-import { Icon } from 'react-native-vector-icons/icon';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export class SignUp extends Component {
     constructor() {
@@ -42,7 +42,9 @@ export class SignUp extends Component {
                 </TouchableHighlight>
                 <Text style={{ textAlign: 'center', color: '#A3ACB9', fontSize: 15, paddingVertical: 15 }}>or</Text>
                 <TouchableHighlight style={styles.buttonStyle}>
-                    <Text style={styles.buttonTextStyle}>Sign Up with Google</Text>
+                    <Icon name="google" color={'white'} size={15}>
+                            <Text style={styles.buttonTextStyle}> Login with Google</Text>
+                    </Icon>
                 </TouchableHighlight>
                 <Text style={styles.bottomTextStyle}>Already have an acoount? <Text style={styles.hyperlinkText}>Log in</Text></Text>
 
@@ -91,10 +93,12 @@ const styles = StyleSheet.create({
     buttonStyle: {
         backgroundColor: '#5974F5',
         borderRadius: 5,
-        height: 50
+        height: 50,
+        alignItems:'center',
+        paddingTop:15
     },
     buttonTextStyle: {
-        top: 15,
+        
         color: 'white',
         textAlign: 'center',
         fontSize: 15

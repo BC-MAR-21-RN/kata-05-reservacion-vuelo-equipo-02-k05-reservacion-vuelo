@@ -8,7 +8,6 @@ class App extends Component {
       respuesta: 'si',
     };
   }
-
   render() {
     return (
       <View>

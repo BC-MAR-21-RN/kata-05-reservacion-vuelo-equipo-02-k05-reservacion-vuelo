@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import {Booking} from './Screens/Booking';
 
 class App extends Component {
   constructor(props) {
@@ -12,10 +13,20 @@ class App extends Component {
   render() {
     return (
       <View>
-        <Text> {this.props.name} </Text>
+        <Booking />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+});
 
 export default App;

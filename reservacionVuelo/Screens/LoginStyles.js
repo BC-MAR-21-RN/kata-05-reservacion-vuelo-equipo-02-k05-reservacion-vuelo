@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
   },
   filledButton: {
-    borderRadius: 10,
+    borderRadius: 6,
     backgroundColor: '#5c6df8',
     alignItems: 'center',
     padding: 15,
@@ -34,7 +34,6 @@ export const styles = StyleSheet.create({
     color: '#ffff',
   },
   emptyButton: {
-    borderRadius: 10,
     alignItems: 'center',
     padding: 15,
   },

@@ -5,6 +5,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     flex: 1,
   },
+  myFlightsContainer: {
+    paddingHorizontal: 30,
+    paddingVertical: 10,
+    flex: 1,
+    justifyContent: 'space-between',
+  },
   titleStyle: {
     fontSize: 40,
     fontWeight: '700',
@@ -52,6 +58,51 @@ const styles = StyleSheet.create({
   hyperlinkText: {
     color: '#5974F5',
     textDecorationLine: 'underline',
+  },
+  /* Flight Card Styles */
+  cardPosition: {},
+  locationDets: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor: '#A3ACB9',
+  },
+  flightDets: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomWidth: 2,
+    borderBottomColor: 'black',
+    paddingVertical: 10,
+  },
+  cityText: {
+    fontSize: 30,
+    fontWeight: '700',
+  },
+  countryText: {
+    fontSize: 15,
+    color: '#A3ACB9',
+  },
+  planeIcon: {
+    color: '#5974F5',
+    top: 10,
+  },
+  bottonFlightDetsText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  /*My Flight Styles */
+  roundedButton: {
+    height: 70,
+    width: 70,
+    backgroundColor: '#5974F5',
+    borderRadius: 50,
+    alignSelf: 'center',
+  },
+  roundedButtonIcon: {
+    color: 'white',
+    alignSelf: 'center',
+    top: '25%',
+    position: 'absolute',
   },
 });
 export default styles;

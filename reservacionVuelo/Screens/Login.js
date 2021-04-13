@@ -5,7 +5,9 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export class Login extends Component {
   constructor(props) {
@@ -32,18 +34,23 @@ export class Login extends Component {
         <View>
           <TouchableOpacity
             accessibilityLabel="Submit login information"
-            style={styles.button}>
-            <Text style={styles.buttonText}>LOGIN</Text>
+            style={styles.filledButton}>
+            <Text style={styles.filledButtonText}>LOGIN</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            accessibilityLabel="Submit login information"
+            accessibilityLabel="Go to submit form"
             style={styles.emptyButton}>
             <Text style={styles.emptyButtonText}>SIGNUP</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            accessibilityLabel="Submit login information"
-            style={styles.loginOption}>
-            <Text style={styles.emptyButtonText}>LOGIN WITH GOOGLE</Text>
+            accessibilityLabel="Alternative google login"
+            style={styles.loginGoogle}>
+            <View style={styles.buttonWithIcon}>
+              <View style={styles.iconSpace}>
+                <Icon name="google" size={20} color="#b6b7ba" />
+              </View>
+              <Text style={styles.emptyButtonText}>LOGIN WITH GOOGLE</Text>
+            </View>
           </TouchableOpacity>
         </View>
       </View>
@@ -53,7 +60,7 @@ export class Login extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
+    height: Dimensions.get('window').height,
     justifyContent: 'space-evenly',
     paddingLeft: 30,
     paddingRight: 30,
@@ -73,28 +80,42 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     borderRadius: 6,
   },
-  button: {
+  filledButton: {
     borderRadius: 10,
     backgroundColor: '#5c6df8',
     alignItems: 'center',
-    padding: 10,
+    padding: 15,
     marginBottom: 20,
     marginTop: 40,
   },
-  buttonText: {
+  filledButtonText: {
     color: '#ffff',
   },
   emptyButton: {
     borderRadius: 10,
     alignItems: 'center',
-    padding: 10,
+    padding: 15,
   },
   emptyButtonText: {
     color: '#b6b7ba',
   },
-  loginOption: {
-    paddingTop: 40,
-    paddingBottom: 40,
+  loginGoogle: {
+    height: 50,
+    width: '100%',
+    marginTop: 40,
+    marginBottom: 40,
     alignItems: 'center',
+    textAlign: 'center',
+    backgroundColor: '#e3e4e5',
+    borderRadius: 6,
+  },
+  iconSpace: {
+    paddingRight: 10,
+  },
+  buttonWithIcon: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

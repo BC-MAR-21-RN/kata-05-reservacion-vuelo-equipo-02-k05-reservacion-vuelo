@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {BookingQuestion} from '../components/BookingQuestion';
+import {ReactNativeCalendar} from '../components/Calendar';
 
 export class Booking extends Component {
   constructor(props) {
@@ -26,7 +27,8 @@ export class Booking extends Component {
           <Text>progresscard</Text>
         </View>
         <View style={styles.component}>
-          <BookingQuestion question={'Where are you now?'} />
+          {/* <BookingQuestion question={'Where are you now?'} /> */}
+          <ReactNativeCalendar question={'Select Date'} />
         </View>
         <View style={styles.button}>
           <TouchableOpacity

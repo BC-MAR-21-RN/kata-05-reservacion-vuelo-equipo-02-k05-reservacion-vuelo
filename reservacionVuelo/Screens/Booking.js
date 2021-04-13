@@ -26,10 +26,14 @@ export class Booking extends Component {
           <Text>progresscard</Text>
         </View>
         <View style={styles.component}>
-          <BookingQuestion />
+          <BookingQuestion question={'Where are you now?'} />
         </View>
         <View style={styles.button}>
-          <Text>button</Text>
+          <TouchableOpacity
+            accessibilityLabel="Submit login information"
+            style={styles.filledButton}>
+            <Text style={styles.filledButtonText}>NEXT</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -43,7 +47,7 @@ const styles = StyleSheet.create({
     paddingRight: 30,
   },
   returnButton: {
-    padding: 13,
+    paddingRight: 10,
   },
   return: {
     flex: 1,
@@ -51,15 +55,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   progressCard: {
-    backgroundColor: 'red',
     flex: 2,
   },
   component: {
-    backgroundColor: 'darkorange',
     flex: 8,
   },
   button: {
-    backgroundColor: 'green',
     flex: 2,
+    flexDirection: 'column',
+  },
+  filledButton: {
+    borderRadius: 10,
+    backgroundColor: '#5c6df8',
+    alignItems: 'center',
+    padding: 15,
+  },
+  filledButtonText: {
+    color: '#ffff',
+    fontWeight: '700',
   },
 });

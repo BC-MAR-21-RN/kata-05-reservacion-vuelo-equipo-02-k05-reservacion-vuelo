@@ -12,7 +12,7 @@ class App extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Booking />
       </View>
     );

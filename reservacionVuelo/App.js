@@ -11,7 +11,6 @@ class App extends Component {
       respuesta: 'si',
     };
   }
-
   render() {
     return <SignUp> </SignUp>;
   }

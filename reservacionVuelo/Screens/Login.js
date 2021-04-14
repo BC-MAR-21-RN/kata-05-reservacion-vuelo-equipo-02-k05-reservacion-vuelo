@@ -17,7 +17,7 @@ export class Login extends Component {
         </View>
         <View>
           <Text style={styles.label}>USERNAME</Text>
-          <TextInput placeholder="Francisco López" style={styles.textInput} />
+          <TextInput placeholder="StephenRCovey" style={styles.textInput} />
           <Text style={styles.label}>PASSWORD</Text>
           <TextInput
             placeholder="*****"

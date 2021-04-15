@@ -15,13 +15,14 @@ export class NumberWheel extends Component {
 
   render() {
     return (
-      <View>
-        <Text>Hola</Text>
-        <View style={styles.wheelOutline}>
+      <View style={styles.container}>
+        <View style={styles.question}>
+          <Text style={styles.label}>How many passengers?</Text>
+        </View>
+        <View style={styles.wheelContainer}>
           <WheelPicker
-            selectedItemTextColor="#5c6df8"
-            selectedItemTextSize={35}
-            itemTextSize={30}
+            selectedItemTextSize={30}
+            itemTextSize={25}
             indicatorColor="#b6b7ba"
             selectedItem={this.state.selectedItem}
             data={this.data}
@@ -35,12 +36,20 @@ export class NumberWheel extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    height: '100%',
+  },
   itemSize: {
     height: '100%',
   },
-  wheelOutline: {
-    borderColor: 'black',
-    borderWidth: 2,
-    backgroundColor: 'black',
+  question: {
+    justifyContent: 'center',
+  },
+  label: {
+    fontWeight: '700',
+    fontSize: 45,
+  },
+  wheelContainer: {
+    padding: 40,
   },
 });

@@ -9,6 +9,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {BookingQuestion} from '../components/BookingQuestion';
 import {ReactNativeCalendar} from '../components/Calendar';
+import {NumberWheel} from '../components/PassengerNumber';
 
 export class Booking extends Component {
   constructor(props) {
@@ -28,7 +29,8 @@ export class Booking extends Component {
         </View>
         <View style={styles.component}>
           {/* <BookingQuestion question={'Where are you now?'} /> */}
-          <ReactNativeCalendar question={'Select Date'} />
+          {/* <ReactNativeCalendar question={'Select Date'} /> */}
+          <NumberWheel question={'how many passengers'} />
         </View>
         <View style={styles.button}>
           <TouchableOpacity

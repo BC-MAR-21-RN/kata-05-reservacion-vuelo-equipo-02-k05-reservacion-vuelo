@@ -4,10 +4,6 @@ import {Text, View} from 'react-native';
 import styles from './styles';
 
 export class CustomCheckbox extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <View>

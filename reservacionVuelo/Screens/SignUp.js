@@ -4,9 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../components/styles';
 import {CustomCheckbox} from '../components/checkbox';
 import {CustomTextInput} from '../components/TextInput';
-
-const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-const nameRegex = /^[A-Za-z]+$/;
+import * as myConst from '../components/constants';
 
 export class SignUp extends Component {
   constructor() {
@@ -30,10 +28,10 @@ export class SignUp extends Component {
       this.state.emailStatus === true &&
       this.state.checkBox === true
     ) {
-      Alert.alert('VALIDATIONS PASSED', ':)')
+      Alert.alert('VALIDATIONS PASSED', ':)');
       this.SignUpEmail(this.state.name, this.state.email, this.state.password);
     } else {
-      Alert.alert('VALIDATIONS NOT PASSED', ':(')
+      Alert.alert('VALIDATIONS NOT PASSED', ':(');
     }
   }
   SignUpEmail(name, email, password) {
@@ -61,24 +59,24 @@ export class SignUp extends Component {
           onChangeText={text =>
             this.setState({
               name: text,
-              nameStatus: nameRegex.test(this.state.name),
+              nameStatus: myConst.NAME_REGEX.test(this.state.name),
             })
           }
           checkError={this.state.nameStatus === false}
-          errorMessage={'Write a valid name please'}
+          errorMessage={myConst.NAME_ERROR_MSJ}
         />
-        
+
         <CustomTextInput
           textInputTitle={'E-mail'}
           keyboardType={'email-address'}
           onChangeText={text => {
             this.setState({
               email: text,
-              emailStatus: emailRegex.test(this.state.email),
+              emailStatus: myConst.EMAIL_REGEX.test(this.state.email),
             });
           }}
           checkError={this.state.emailStatus === false}
-          errorMessage={'Write a valid email please'}
+          errorMessage={myConst.EMAIL_ERROR_MSJ}
         />
 
         <CustomTextInput
@@ -86,24 +84,24 @@ export class SignUp extends Component {
           password={true}
           onChangeText={text => {
             this.setState({password: text});
-            this.state.password.length > 4
+            this.state.password.length >= 5
               ? this.setState({passwordStatus: true})
               : this.setState({passwordStatus: false});
           }}
           checkError={this.state.passwordStatus === false}
-          errorMessage={'Write a password with 6 or more characters'}
+          errorMessage={myConst.PASSWORD_ERROR_MSJ}
         />
 
         {/**CheckBoxes */}
         <CustomCheckbox
           value={this.state.checkBox}
           onValueChange={() => this.setState({checkBox: !this.state.checkBox})}
-          text={'I agree to the '}
-          labelText={'Terms'}
-          secondaryText={' and '}
-          secondaryLabelText={'Privacy Policy.'}
+          text={myConst.TP_AGREEMENT.substr(0, 14)}
+          labelText={myConst.TP_AGREEMENT.substr(15, 5)}
+          secondaryText={myConst.TP_AGREEMENT.substr(20, 4)}
+          secondaryLabelText={myConst.TP_AGREEMENT.substr(25, 16)}
           check={this.state.checkBox}
-          errorMessage={'Terms and privacy policy must be checked'}
+          errorMessage={myConst.TP_ERROR_MSJ}
         />
 
         <CustomCheckbox
@@ -111,7 +109,7 @@ export class SignUp extends Component {
           onValueChange={() =>
             this.setState({checkBoxSub: !this.state.checkBoxSub})
           }
-          text={'Subscribe for select product update'}
+          text={myConst.SUB_MSJ}
         />
 
         {/* Buttons */}

@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     color: 'red',
     fontWeight: 'bold',
     paddingTop: 5,
-
+  },
   /* Flight Card Styles */
   locationDets: {
     flexDirection: 'row',

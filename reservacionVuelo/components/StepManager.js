@@ -1,11 +1,6 @@
 import React, {PureComponent} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Dimensions,
-} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
+import {styles} from '../components/BookingStyles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Step extends PureComponent {
@@ -13,10 +8,10 @@ class Step extends PureComponent {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.stepContainer}>
         {this.backButton()}
         <View style={styles.card} />
-        <View style={styles.label}>{this.props.children}</View>
+        <View style={styles.questionText}>{this.props.children}</View>
         {this.nextButton()}
       </View>
     );
@@ -49,7 +44,7 @@ class Step extends PureComponent {
 }
 
 export class StepManager extends PureComponent {
-  static Step = props => <Step style={styles.container} {...props} />;
+  static Step = props => <Step style={styles.stepContainer} {...props} />;
 
   state = {
     index: 0,
@@ -73,7 +68,7 @@ export class StepManager extends PureComponent {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.stepContainer}>
         {React.Children.map(this.props.children, (el, index) => {
           if (index === this.state.index) {
             return React.cloneElement(el, {
@@ -89,43 +84,3 @@ export class StepManager extends PureComponent {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  returnButton: {
-    paddingRight: 10,
-  },
-  return: {
-    flex: 1,
-  },
-  progressCard: {
-    flex: 2,
-  },
-  component: {
-    flex: 8,
-  },
-  button: {
-    flex: 2,
-    flexDirection: 'column',
-  },
-  filledButton: {
-    borderRadius: 10,
-    backgroundColor: '#5c6df8',
-    alignItems: 'center',
-    padding: 15,
-  },
-  filledButtonText: {
-    color: '#ffff',
-    fontWeight: '700',
-  },
-  label: {
-    flex: 10,
-    justifyContent: 'flex-start',
-  },
-  card: {
-    flex: 2,
-    backgroundColor: 'orange',
-  },
-});

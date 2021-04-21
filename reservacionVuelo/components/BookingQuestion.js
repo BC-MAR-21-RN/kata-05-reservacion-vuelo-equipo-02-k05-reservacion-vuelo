@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, TextInput} from 'react-native';
+import {View, TextInput} from 'react-native';
+import {styles} from '../components/BookingStyles';
 
 export class BookingQuestion extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ export class BookingQuestion extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.componentContainer}>
         <View style={styles.questionTextBox}>
           <TextInput style={styles.textInput} placeholder="Select Location" />
         </View>
@@ -16,18 +17,3 @@ export class BookingQuestion extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: '100%',
-  },
-  questionTextBox: {
-    flex: 2,
-  },
-  textInput: {
-    borderBottomWidth: 2,
-    borderBottomColor: '#b6b7ba',
-    paddingLeft: 6,
-    borderRadius: 6,
-  },
-});

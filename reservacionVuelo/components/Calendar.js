@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, Text} from 'react-native';
 import {Calendar} from 'react-native-calendars';
+import {styles} from '../components/BookingStyles';
 
 export class ReactNativeCalendar extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ export class ReactNativeCalendar extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.componentContainer}>
         <View style={styles.question}>
           <Text style={styles.label}>{this.props.question}</Text>
         </View>
@@ -39,16 +40,3 @@ export class ReactNativeCalendar extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: '100%',
-  },
-  calendar: {
-    flex: 4,
-  },
-  label: {
-    fontWeight: '700',
-    fontSize: 45,
-  },
-});

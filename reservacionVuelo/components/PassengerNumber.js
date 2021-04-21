@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View} from 'react-native';
 import {WheelPicker} from 'react-native-wheel-picker-android';
+import {styles} from '../components/BookingStyles';
 
 export class NumberWheel extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ export class NumberWheel extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.componentContainer}>
         <View style={styles.wheelContainer}>
           <WheelPicker
             selectedItemTextSize={30}
@@ -31,22 +32,3 @@ export class NumberWheel extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: '100%',
-  },
-  itemSize: {
-    height: '100%',
-  },
-  question: {
-    justifyContent: 'center',
-  },
-  label: {
-    fontWeight: '700',
-    fontSize: 45,
-  },
-  wheelContainer: {
-    padding: 40,
-  },
-});

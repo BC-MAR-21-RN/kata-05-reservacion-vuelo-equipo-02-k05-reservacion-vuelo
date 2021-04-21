@@ -54,7 +54,7 @@ La aplicación deberá:
  - Calidad
    - Utilizar un estilo de código estandarizado (revisado por Eslint)
    - Incluir pruebas unitarias
-   - Puntuación **A** obtenida en CodeClimate
+   - Puntuación **A** obtenida en CodeClimate [![DeepScan grade](https://deepscan.io/api/teams/13587/projects/16601/branches/359336/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=13587&pid=16601&bid=359336) 
 - Ejecución 
    - Puede ejecutarse en Android o iOs
 - Diseño

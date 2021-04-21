@@ -31,6 +31,9 @@ export class Booking extends Component {
             <Text style={styles.label}>How many passengers?</Text>
             <NumberWheel />
           </StepManager.Step>
+          <StepManager.Step>
+            <Text style={styles.label}>Your request was received.</Text>
+          </StepManager.Step>
         </StepManager>
       </View>
     );

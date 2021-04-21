@@ -32,12 +32,21 @@ class Step extends PureComponent {
   nextButton() {
     return (
       <View style={styles.button}>
-        <TouchableOpacity
-          accessibilityLabel="Submit login information"
-          style={styles.filledButton}
-          onPress={this.props.nextStep}>
-          <Text style={styles.filledButtonText}>NEXT</Text>
-        </TouchableOpacity>
+        {this.props.isLast ? (
+          <TouchableOpacity
+            accessibilityLabel="Submit login information"
+            style={styles.filledButton}
+            onPress={this.props.nextStep}>
+            <Text style={styles.filledButtonText}>FINISH</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            accessibilityLabel="Submit login information"
+            style={styles.filledButton}
+            onPress={this.props.nextStep}>
+            <Text style={styles.filledButtonText}>NEXT</Text>
+          </TouchableOpacity>
+        )}
       </View>
     );
   }
@@ -75,6 +84,7 @@ export class StepManager extends PureComponent {
               currentIndex: this.state.index,
               nextStep: this._nextStep,
               prevState: this._prevStep,
+              isLast: this.state.index === this.props.children.length - 1,
             });
           }
 

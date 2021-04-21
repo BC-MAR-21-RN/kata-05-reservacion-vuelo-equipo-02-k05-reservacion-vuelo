@@ -76,6 +76,7 @@ export const styles = StyleSheet.create({
   //question texboxes
   questionTextBox: {
     flex: 2,
+    paddingTop: 10,
   },
   textInput: {
     borderBottomWidth: 2,

@@ -16,9 +16,6 @@ export class NumberWheel extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.question}>
-          <Text style={styles.label}>How many passengers?</Text>
-        </View>
         <View style={styles.wheelContainer}>
           <WheelPicker
             selectedItemTextSize={30}

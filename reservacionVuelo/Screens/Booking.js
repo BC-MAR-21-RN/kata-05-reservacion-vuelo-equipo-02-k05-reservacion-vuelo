@@ -11,36 +11,52 @@ import {BookingQuestion} from '../components/BookingQuestion';
 import {ReactNativeCalendar} from '../components/Calendar';
 import {NumberWheel} from '../components/PassengerNumber';
 import {InfoBooking} from '../components/InfoBooking';
+import {StepManager} from '../components/StepManager';
 
 export class Booking extends Component {
   constructor(props) {
     super(props);
   }
 
+  nextButton() {
+    return (
+      <View style={styles.button}>
+        <TouchableOpacity
+          accessibilityLabel="Submit login information"
+          style={styles.filledButton}>
+          <Text style={styles.filledButtonText}>NEXT</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  card() {
+    <View style={styles.progressCard}>
+      <Text>progresscard</Text>
+    </View>;
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.return}>
-          <TouchableOpacity style={styles.returnButton}>
-            <Icon name="chevron-left" size={30} color="#6075e6" />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.progressCard}>
-          <Text>progresscard</Text>
-        </View>
-        <View style={styles.component}>
-          {/* <BookingQuestion question={'Where are you now?'} /> */}
-          {/* <ReactNativeCalendar question={'Select Date'} /> */}
-          {/* <NumberWheel question={'how many passengers'} /> */}
-          <InfoBooking />
-        </View>
-        <View style={styles.button}>
-          <TouchableOpacity
-            accessibilityLabel="Submit login information"
-            style={styles.filledButton}>
-            <Text style={styles.filledButtonText}>NEXT</Text>
-          </TouchableOpacity>
-        </View>
+        <StepManager>
+          <StepManager.Step>
+            <Text style={styles.label}>Where are you now?</Text>
+            <BookingQuestion style={styles.component} />
+          </StepManager.Step>
+          <StepManager.Step>
+            <Text style={styles.label}>Where will you be flying to?</Text>
+            <BookingQuestion style={styles.component} />
+          </StepManager.Step>
+          <StepManager.Step>
+            <Text style={styles.label}>Select date</Text>
+            <ReactNativeCalendar />
+          </StepManager.Step>
+          <StepManager.Step>
+            <Text style={styles.label}>How many passengers?</Text>
+            <NumberWheel />
+          </StepManager.Step>
+        </StepManager>
       </View>
     );
   }
@@ -51,6 +67,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height,
     paddingLeft: 30,
     paddingRight: 30,
+    paddingTop: 10,
   },
   returnButton: {
     paddingRight: 10,
@@ -79,5 +96,9 @@ const styles = StyleSheet.create({
   filledButtonText: {
     color: '#ffff',
     fontWeight: '700',
+  },
+  label: {
+    fontWeight: '700',
+    fontSize: 45,
   },
 });

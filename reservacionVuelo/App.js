@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
+
 import {Booking} from './Screens/Booking';
 import {Login} from './Screens/Login';
-import { SignUp } from './Screens/SignUp';
+import {SignUp} from './Screens/SignUp';
 
 class App extends Component {
   constructor(props) {
@@ -13,11 +14,7 @@ class App extends Component {
     };
   }
   render() {
-    return (
-      <View style={styles.container}>
-        <Booking />
-      </View>
-    );
+    return <SignUp> </SignUp>;
   }
 }
 

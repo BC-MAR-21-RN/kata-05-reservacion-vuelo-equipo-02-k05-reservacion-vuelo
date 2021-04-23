@@ -14,25 +14,64 @@ export class Booking extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StepManager>
+        <StepManager
+          initialValues={{
+            departureCountry: '',
+            departureCity: '',
+            arrivalCountry: '',
+            arrivalCity: '',
+            date: '',
+            day: '',
+            month: '',
+            year: '',
+            passengers: '',
+          }}>
           <StepManager.Step>
-            <Text style={styles.label}>Where are you now?</Text>
-            <BookingQuestion style={styles.component} />
+            {({onChangeValue, values}) => (
+              <View>
+                <BookingQuestion
+                  onChangeValue={onChangeValue}
+                  country="departureCountry"
+                  city="departureCity"
+                  question="Where are you now?"
+                />
+              </View>
+            )}
           </StepManager.Step>
           <StepManager.Step>
-            <Text style={styles.label}>Where will you be flying to?</Text>
-            <BookingQuestion style={styles.component} />
+            {({onChangeValue, values}) => (
+              <View>
+                <BookingQuestion
+                  onChangeValue={onChangeValue}
+                  country="arrivalCountry"
+                  city="arrivalCity"
+                  question="Where are you flying to?"
+                />
+              </View>
+            )}
           </StepManager.Step>
           <StepManager.Step>
-            <Text style={styles.label}>Select date</Text>
-            <ReactNativeCalendar />
+            {({onChangeValue, values}) => (
+              <View>
+                <ReactNativeCalendar
+                  onChangeValue={onChangeValue}
+                  name="date"
+                  day="day"
+                  month="month"
+                  year="year"
+                />
+              </View>
+            )}
           </StepManager.Step>
           <StepManager.Step>
-            <Text style={styles.label}>How many passengers?</Text>
-            <NumberWheel />
+            {({onChangeValue, values}) => (
+              <View>
+                <NumberWheel onChangeValue={onChangeValue} name="passengers" />
+              </View>
+            )}
           </StepManager.Step>
           <StepManager.Step>
-            <Text style={styles.label}>Your request was received.</Text>
+            {() => <Text style={styles.label}>Your request was received.</Text>}
           </StepManager.Step>
         </StepManager>
       </View>

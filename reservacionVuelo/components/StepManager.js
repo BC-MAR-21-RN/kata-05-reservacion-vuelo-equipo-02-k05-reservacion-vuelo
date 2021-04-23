@@ -1,17 +1,30 @@
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {styles} from '../components/BookingStyles';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {FlightCard} from './flightCard';
 
-class Step extends PureComponent {
+class Step extends Component {
   state = {};
 
   render() {
     return (
       <View style={styles.stepContainer}>
         {this.backButton()}
-        <View style={styles.card} />
-        <View style={styles.questionText}>{this.props.children}</View>
+        <View style={styles.card}>
+          <FlightCard
+            depCity={this.props.values.departureCity}
+            depCountry={this.props.values.departureCountry}
+            arrCity={this.props.values.arrivalCity}
+            arrCountry={this.props.values.arrivalCountry}
+            month={this.props.values.month}
+          />
+        </View>
+        <View style={styles.questionText}>
+          {this.props.children({
+            onChangeValue: this.props.onChangeValue,
+          })}
+        </View>
         {this.nextButton()}
       </View>
     );
@@ -52,11 +65,15 @@ class Step extends PureComponent {
   }
 }
 
-export class StepManager extends PureComponent {
+export class StepManager extends Component {
   static Step = props => <Step style={styles.stepContainer} {...props} />;
 
   state = {
     index: 0,
+
+    values: {
+      ...this.props.initialValues,
+    },
   };
 
   _nextStep = () => {
@@ -75,7 +92,17 @@ export class StepManager extends PureComponent {
     }
   };
 
+  _onChangeValue = (name, value) => {
+    this.setState(prevState => ({
+      values: {
+        ...prevState.values,
+        [name]: value,
+      },
+    }));
+  };
+
   render() {
+    console.log('values', this.state);
     return (
       <View style={styles.stepContainer}>
         {React.Children.map(this.props.children, (el, index) => {
@@ -85,6 +112,8 @@ export class StepManager extends PureComponent {
               nextStep: this._nextStep,
               prevState: this._prevStep,
               isLast: this.state.index === this.props.children.length - 1,
+              onChangeValue: this._onChangeValue,
+              values: this.state.values,
             });
           }
 

@@ -11,16 +11,26 @@ export class ReactNativeCalendar extends Component {
     };
   }
 
+  _onChangeText = text => {
+    let date = new Date(this.state.text);
+
+    this.props.onChangeValue(this.props.month, 'si');
+
+    this.props.onChangeValue(this.props.name, text);
+  };
+
   render() {
+    const {onChangeValue, name, day, month, year, ...rest} = this.props;
     return (
       <View style={styles.componentContainer}>
         <View style={styles.question}>
-          <Text style={styles.label}>{this.props.question}</Text>
+          <Text style={styles.label}>Select date</Text>
         </View>
         <View style={styles.calendar}>
           <Calendar
             current={'2021-04-13'}
             onDayPress={day => {
+              this._onChangeText(day.dateString);
               this.setState({selected: day.dateString});
             }}
             markedDates={{

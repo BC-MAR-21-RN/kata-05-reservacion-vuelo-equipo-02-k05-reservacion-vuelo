@@ -1,13 +1,12 @@
-import React, {Component} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {styles} from '../Screens/LoginStyles';
+import { styles } from '../components/LoginStyles';
 
 export class Login extends Component {
   constructor(props) {
     super(props);
   }
-
   render() {
     return (
       <View style={styles.container}>
@@ -33,7 +32,8 @@ export class Login extends Component {
           </TouchableOpacity>
           <TouchableOpacity
             accessibilityLabel="Go to submit form"
-            style={styles.emptyButton}>
+            style={styles.emptyButton}
+            onPress={() => { this.props.navigation.navigate('SignUp')}}>
             <Text style={styles.emptyButtonText}>SIGNUP</Text>
           </TouchableOpacity>
           <TouchableOpacity

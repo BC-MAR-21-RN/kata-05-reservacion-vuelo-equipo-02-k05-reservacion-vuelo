@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { StyleSheet} from 'react-native';
 import {Login} from './Screens/Login';
 
 class App extends Component {
@@ -10,7 +11,6 @@ class App extends Component {
     };
   }
   render() {
-
     return <Login/>;
   }
 }

@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   /* Flight Card Styles */
-  cardPosition: {},
   locationDets: {
     flexDirection: 'row',
     justifyContent: 'space-between',

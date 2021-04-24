@@ -71,7 +71,11 @@ export class Booking extends Component {
             )}
           </StepManager.Step>
           <StepManager.Step>
-            {() => <Text style={styles.label}>Your request was received.</Text>}
+            {() => (
+              <View style={styles.componentContainer}>
+                <Text style={styles.label}>Your request was received.</Text>
+              </View>
+            )}
           </StepManager.Step>
         </StepManager>
       </View>

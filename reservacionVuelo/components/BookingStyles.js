@@ -55,6 +55,7 @@ export const styles = StyleSheet.create({
   //calendar styles
 
   componentContainer: {
+    paddingTop: 50,
     height: '100%',
   },
   calendar: {

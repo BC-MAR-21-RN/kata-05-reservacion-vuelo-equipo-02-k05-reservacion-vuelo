@@ -6,6 +6,7 @@ import {CustomTextInput} from '../components/TextInput';
 import * as myConst from '../components/constants';
 
 
+
 export class SignUp extends Component {
   constructor() {
     super();
@@ -113,7 +114,6 @@ export class SignUp extends Component {
         />
 
         {/* Buttons */}
-        
         <SignUpButton onPress={()=> this.check()} title={'Sign Up'}/>
 
         <Text style={styles.bottomTextStyle}>or</Text>

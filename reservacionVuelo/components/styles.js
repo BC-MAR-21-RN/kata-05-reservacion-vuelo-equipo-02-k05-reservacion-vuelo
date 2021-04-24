@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
   },
-
   titleStyle: {
     fontSize: 40,
     fontWeight: '700',
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
     height: 50,
   },
   textInputSpacing: {
-    paddingVertical: 10,
+    paddingVertical: 5,
   },
   checkBoxAlignment: {
     flexDirection: 'row',
@@ -59,6 +58,12 @@ const styles = StyleSheet.create({
   hyperlinkText: {
     color: '#5974F5',
     textDecorationLine: 'underline',
+  },
+
+  errorMessage: {
+    color: 'red',
+    fontWeight: 'bold',
+    paddingTop: 5,
   },
   /* Flight Card Styles */
   locationDets: {

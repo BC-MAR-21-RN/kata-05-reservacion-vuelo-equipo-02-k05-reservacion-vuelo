@@ -18,6 +18,9 @@ class Step extends Component {
             arrCity={this.props.values.arrivalCity}
             arrCountry={this.props.values.arrivalCountry}
             month={this.props.values.month}
+            day={this.props.values.day}
+            year={this.props.values.year}
+            passangers={this.props.values.passengers}
           />
         </View>
         <View style={styles.questionText}>

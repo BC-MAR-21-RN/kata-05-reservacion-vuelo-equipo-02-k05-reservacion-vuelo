@@ -12,10 +12,24 @@ export class ReactNativeCalendar extends Component {
   }
 
   _onChangeText = text => {
-    let date = new Date(this.state.text);
+    let months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
 
-    this.props.onChangeValue(this.props.month, 'si');
-
+    this.props.onChangeValue(this.props.month, months[text.month - 1]);
+    this.props.onChangeValue(this.props.day, text.day);
+    this.props.onChangeValue(this.props.year, text.year);
     this.props.onChangeValue(this.props.name, text);
   };
 
@@ -28,9 +42,10 @@ export class ReactNativeCalendar extends Component {
         </View>
         <View style={styles.calendar}>
           <Calendar
+            {...rest}
             current={'2021-04-13'}
             onDayPress={day => {
-              this._onChangeText(day.dateString);
+              this._onChangeText(day);
               this.setState({selected: day.dateString});
             }}
             markedDates={{

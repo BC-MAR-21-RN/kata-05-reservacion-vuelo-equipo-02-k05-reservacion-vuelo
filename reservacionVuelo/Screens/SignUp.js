@@ -6,6 +6,7 @@ import {CustomTextInput} from '../components/TextInput';
 import * as myConst from '../components/constants';
 
 
+
 export class SignUp extends Component {
   constructor() {
     super();

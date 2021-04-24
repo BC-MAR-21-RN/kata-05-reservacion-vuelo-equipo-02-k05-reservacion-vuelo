@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Alert, Text, TouchableHighlight, View} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../components/styles';
 import {CustomCheckbox} from '../components/checkbox';
 import {CustomTextInput} from '../components/TextInput';
 import * as myConst from '../components/constants';
+
 
 export class SignUp extends Component {
   constructor() {
@@ -113,25 +113,16 @@ export class SignUp extends Component {
         />
 
         {/* Buttons */}
-
-        <TouchableHighlight
-          style={styles.buttonStyle}
-          onPress={() => {
-            this.check();
-          }}>
-          <Text style={styles.buttonTextStyle}>Sign Up</Text>
-        </TouchableHighlight>
+        
+        <SignUpButton onPress={()=> this.check()} title={'Sign Up'}/>
 
         <Text style={styles.bottomTextStyle}>or</Text>
 
-        <TouchableHighlight style={styles.buttonStyle}>
-          <Icon name="google" color={'white'} size={15}>
-            <Text style={styles.buttonTextStyle}> Login with Google</Text>
-          </Icon>
-        </TouchableHighlight>
+        <SignUpButton onPress={()=> {}} title={'Sign Up with google'} icon={'google'}/>
+
         <Text style={styles.bottomTextStyle}>
           Already have an acoount?
-          <Text style={styles.hyperlinkText}>Log in</Text>
+          <Text style={styles.hyperlinkText}> Log in</Text>
         </Text>
       </View>
     );

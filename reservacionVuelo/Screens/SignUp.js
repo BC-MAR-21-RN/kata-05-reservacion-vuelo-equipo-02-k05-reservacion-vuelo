@@ -4,6 +4,7 @@ import CheckBox from '@react-native-community/checkbox';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import styles from '../components/styles';
 
+
 export class SignUp extends Component {
   constructor() {
     super();
@@ -43,18 +44,18 @@ export class SignUp extends Component {
         </View>
 
         {/* Buttons */}
-        <TouchableHighlight style={styles.buttonStyle}>
-          <Text style={styles.buttonTextStyle}>Sign Up</Text>
-        </TouchableHighlight>
+
+
+        
+        <SignUpButton onPress={()=> this.check()} title={'Sign Up'}/>
+
         <Text style={styles.bottomTextStyle}>or</Text>
-        <TouchableHighlight style={styles.buttonStyle}>
-          <Icon name="sc-google-plus" color={'white'} size={15}>
-            <Text style={styles.buttonTextStyle}> Login with Google</Text>
-          </Icon>
-        </TouchableHighlight>
+
+        <SignUpButton onPress={()=> {}} title={'Sign Up with google'} icon={'google'}/>
+
         <Text style={styles.bottomTextStyle}>
-          Already have an acoount?{' '}
-          <Text style={styles.hyperlinkText}>Log in</Text>
+          Already have an acoount?
+          <Text style={styles.hyperlinkText}> Log in</Text>
         </Text>
       </View>
     );

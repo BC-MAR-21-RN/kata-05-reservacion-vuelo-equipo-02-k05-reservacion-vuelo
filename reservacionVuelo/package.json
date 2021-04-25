@@ -13,7 +13,9 @@
     "@react-native-community/checkbox": "^0.5.7",
     "react": "17.0.1",
     "react-native": "0.64.0",
+    "react-native-calendars": "^1.1255.0",
     "react-native-vector-icons": "^8.1.0",
+    "react-native-wheel-picker-android": "^2.0.6",
     "watchman": "^1.0.0"
   },
   "devDependencies": {

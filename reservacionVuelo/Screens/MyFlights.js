@@ -5,8 +5,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {FlightCard} from '../components/flightCard';
 import dummyData from '../data/DummyData';
 
-
-
 export class MyFlights extends Component {
   constructor() {
     super();

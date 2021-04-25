@@ -24,7 +24,7 @@ export class FlightCard extends Component {
         </View>
         <View style={styles.flightDets}>
           <Text style={styles.bottonFlightDetsText}>
-            {this.props.month} {this.props.day} {this.props.year}
+            {this.props.month} {this.props.day}, {this.props.year}
           </Text>
           <Text style={styles.bottonFlightDetsText}>
             {this.props.passangers} passanger(s)

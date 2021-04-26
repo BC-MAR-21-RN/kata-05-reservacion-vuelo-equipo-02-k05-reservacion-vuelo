@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-import {Alert, Text, TouchableHighlight, View} from 'react-native';
+import {Alert, Text, View} from 'react-native';
 import styles from '../components/styles';
 import {CustomCheckbox} from '../components/checkbox';
 import {CustomTextInput} from '../components/TextInput';
 import * as myConst from '../components/constants';
-
-
 
 export class SignUp extends Component {
   constructor() {

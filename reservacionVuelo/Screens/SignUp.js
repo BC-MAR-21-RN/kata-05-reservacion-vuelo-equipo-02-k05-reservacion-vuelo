@@ -1,9 +1,20 @@
 import React, {Component} from 'react';
 import {Alert, Text, View} from 'react-native';
-import styles from '../components/styles';
+
+import auth from '@react-native-firebase/auth'
+import  {GoogleSignin}  from '@react-native-google-signin/google-signin';
+
+
 import {CustomCheckbox} from '../components/checkbox';
 import {CustomTextInput} from '../components/TextInput';
+import { SignUpButton } from '../components/SignUpButton';
+
+import styles from '../components/styles';
 import * as myConst from '../components/constants';
+
+GoogleSignin.configure({
+  webClientId:'510894524531-02cf3bsilv0qmjuue7aeanog5v3109td.apps.googleusercontent.com',
+});
 
 export class SignUp extends Component {
   constructor() {
@@ -19,7 +30,7 @@ export class SignUp extends Component {
       checkBoxSub: true,
     };
   }
-
+  
   check() {
     if (
       this.state.passwordStatus === true &&
@@ -27,10 +38,9 @@ export class SignUp extends Component {
       this.state.emailStatus === true &&
       this.state.checkBox === true
     ) {
-      Alert.alert('VALIDATIONS PASSED', ':)');
       this.SignUpEmail(this.state.name, this.state.email, this.state.password);
     } else {
-      Alert.alert('VALIDATIONS NOT PASSED', ':(');
+      Alert.alert('Fill or correct the required fields please!', 'OK');
     }
   }
   SignUpEmail(name, email, password) {
@@ -38,7 +48,21 @@ export class SignUp extends Component {
     TODO:
     SignUp with email using firebase
     /*/
+    auth().createUserWithEmailAndPassword(email,password)
+    .then(()=>{Alert.alert(`${name}'s account created`, ':)');})
+    .catch( e =>{
+      if (error.code === 'auth/email-already-in-use') {
+        Alert.alert('That email address is already in use!', 'ok');
+      }
+  
+      if (error.code === 'auth/invalid-email') {
+        Alert.alert('That email address is invalid!', 'ok');
+      }
+  
+      Alert.alert(e)
+    })
   }
+
   SignUpGoogle() {
     /**
      * TODO:
@@ -116,7 +140,7 @@ export class SignUp extends Component {
 
         <Text style={styles.bottomTextStyle}>or</Text>
 
-        <SignUpButton onPress={()=> {}} title={'Sign Up with google'} icon={'google'}/>
+        <SignUpButton onPress={()=> this.SignUpGoogle()} title={' Sign Up with google'} icon={'google'}/>
 
         <Text style={styles.bottomTextStyle}>
           Already have an acoount?

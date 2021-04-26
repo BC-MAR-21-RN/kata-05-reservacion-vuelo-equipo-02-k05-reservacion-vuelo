@@ -1,17 +1,14 @@
 import React, {Component} from 'react';
-import { StyleSheet} from 'react-native';
 import {Login} from './Screens/Login';
+import { SignUp } from './Screens/SignUp';
 
 class App extends Component {
   constructor(props) {
-    super(props);
-    this.name = 'App';
-    this.state = {
-      respuesta: 'si',
-    };
+    super(props)
   }
+
   render() {
-    return <Login/>;
+    return <SignUp/>;
   }
 }
 

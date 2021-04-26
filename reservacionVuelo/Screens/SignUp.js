@@ -13,9 +13,11 @@ import styles from '../components/styles';
 import * as myConst from '../components/constants';
 
 
+
 GoogleSignin.configure({
   webClientId: "510894524531-02cf3bsilv0qmjuue7aeanog5v3109td.apps.googleusercontent.com",
 });
+
 
 export class SignUp extends Component {
 
@@ -134,6 +136,7 @@ export class SignUp extends Component {
         />
 
         {/* Buttons */}
+
         <SignUpButton onPress={() => this.check()} title={'Sign Up'} />
 
         <Text style={styles.bottomTextStyle}>or</Text>

@@ -1,22 +1,24 @@
-import React, {Component} from 'react';
-import {Alert, Text, View} from 'react-native';
+import React, { Component } from 'react';
+import { Alert, Text, View } from 'react-native';
 
 import auth from '@react-native-firebase/auth'
-import  {GoogleSignin}  from '@react-native-google-signin/google-signin';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 
-import {CustomCheckbox} from '../components/checkbox';
-import {CustomTextInput} from '../components/TextInput';
+import { CustomCheckbox } from '../components/checkbox';
+import { CustomTextInput } from '../components/TextInput';
 import { SignUpButton } from '../components/SignUpButton';
 
 import styles from '../components/styles';
 import * as myConst from '../components/constants';
 
+
 GoogleSignin.configure({
-  webClientId:'510894524531-02cf3bsilv0qmjuue7aeanog5v3109td.apps.googleusercontent.com',
+  webClientId: "510894524531-02cf3bsilv0qmjuue7aeanog5v3109td.apps.googleusercontent.com",
 });
 
 export class SignUp extends Component {
+
   constructor() {
     super();
     this.state = {
@@ -30,7 +32,7 @@ export class SignUp extends Component {
       checkBoxSub: true,
     };
   }
-  
+
   check() {
     if (
       this.state.passwordStatus === true &&
@@ -44,30 +46,26 @@ export class SignUp extends Component {
     }
   }
   SignUpEmail(name, email, password) {
-    /*/
-    TODO:
-    SignUp with email using firebase
-    /*/
-    auth().createUserWithEmailAndPassword(email,password)
-    .then(()=>{Alert.alert(`${name}'s account created`, ':)');})
-    .catch( e =>{
-      if (error.code === 'auth/email-already-in-use') {
-        Alert.alert('That email address is already in use!', 'ok');
-      }
-  
-      if (error.code === 'auth/invalid-email') {
-        Alert.alert('That email address is invalid!', 'ok');
-      }
-  
-      Alert.alert(e)
-    })
+    auth().createUserWithEmailAndPassword(email, password)
+      .then(() => { Alert.alert(`${name}'s account created`, ':)'); })
+      .catch(e => {
+        if (error.code === 'auth/email-already-in-use') {
+          Alert.alert('That email address is already in use!', 'ok');
+        }
+        if (error.code === 'auth/invalid-email') {
+          Alert.alert('That email address is invalid!', 'ok');
+        }
+        Alert.alert(e)
+      })
   }
 
-  SignUpGoogle() {
-    /**
-     * TODO:
-     * SIGNUP WITH GOOGLE USING FIREBASE
-     */
+  async SignUpGoogle() {
+    // Get the users ID token
+    const { idToken } = await GoogleSignin.signIn();
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    // Sign-in the user with the credential
+    return await auth().signInWithCredential(googleCredential)
   }
 
   render() {
@@ -106,10 +104,10 @@ export class SignUp extends Component {
           textInputTitle={'Password'}
           password={true}
           onChangeText={text => {
-            this.setState({password: text});
+            this.setState({ password: text });
             this.state.password.length >= 5
-              ? this.setState({passwordStatus: true})
-              : this.setState({passwordStatus: false});
+              ? this.setState({ passwordStatus: true })
+              : this.setState({ passwordStatus: false });
           }}
           checkError={this.state.passwordStatus === false}
           errorMessage={myConst.PASSWORD_ERROR_MSJ}
@@ -118,7 +116,7 @@ export class SignUp extends Component {
         {/**CheckBoxes */}
         <CustomCheckbox
           value={this.state.checkBox}
-          onValueChange={() => this.setState({checkBox: !this.state.checkBox})}
+          onValueChange={() => this.setState({ checkBox: !this.state.checkBox })}
           text={myConst.TP_AGREEMENT.substr(0, 14)}
           labelText={myConst.TP_AGREEMENT.substr(15, 5)}
           secondaryText={myConst.TP_AGREEMENT.substr(20, 4)}
@@ -130,17 +128,17 @@ export class SignUp extends Component {
         <CustomCheckbox
           value={this.state.checkBoxSub}
           onValueChange={() =>
-            this.setState({checkBoxSub: !this.state.checkBoxSub})
+            this.setState({ checkBoxSub: !this.state.checkBoxSub })
           }
           text={myConst.SUB_MSJ}
         />
 
         {/* Buttons */}
-        <SignUpButton onPress={()=> this.check()} title={'Sign Up'}/>
+        <SignUpButton onPress={() => this.check()} title={'Sign Up'} />
 
         <Text style={styles.bottomTextStyle}>or</Text>
 
-        <SignUpButton onPress={()=> this.SignUpGoogle()} title={' Sign Up with google'} icon={'google'}/>
+        <SignUpButton onPress={() => this.SignUpGoogle()} title={' Sign Up with google'} icon={'google'} />
 
         <Text style={styles.bottomTextStyle}>
           Already have an acoount?

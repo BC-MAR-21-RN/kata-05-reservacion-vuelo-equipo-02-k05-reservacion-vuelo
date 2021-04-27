@@ -44,30 +44,38 @@ export class SignUp extends Component {
     ) {
       this.SignUpEmail(this.state.name, this.state.email, this.state.password);
     } else {
-      Alert.alert('Fill or correct the required fields please!', 'OK');
+      Alert.alert('Fill or correct the required fields please!');
     }
   }
+
   SignUpEmail(name, email, password) {
     auth().createUserWithEmailAndPassword(email, password)
-      .then(() => { Alert.alert(`${name}'s account created`, ':)'); })
-      .catch(e => {
+      .then(() => { Alert.alert(`${name}'s account successfully created!`) })
+      .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
-          Alert.alert('That email address is already in use!', 'ok');
+          Alert.alert('ERROR: That email address is already in use!');
         }
-        if (error.code === 'auth/invalid-email') {
-          Alert.alert('That email address is invalid!', 'ok');
+        else if (error.code === 'auth/invalid-email') {
+          Alert.alert('ERROR: That email address is invalid!');
+        } else {
+          Alert.alert(`email account couldn't be created error: '${error}'`)
         }
-        Alert.alert(e)
       })
+
+
   }
 
   async SignUpGoogle() {
-    // Get the users ID token
-    const { idToken } = await GoogleSignin.signIn();
-    // Create a Google credential with the token
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    // Sign-in the user with the credential
-    return await auth().signInWithCredential(googleCredential)
+    try {
+      // Get the users ID token
+      const { idToken } = await GoogleSignin.signIn();
+      // Create a Google credential with the token
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+      // Sign-in the user with the credential
+      await auth().signInWithCredential(googleCredential).then(() => Alert.alert('Signed in with Google!'))
+    } catch (e) {
+      Alert.alert(`Your google account couldn't be created: ${e.message}`);
+    }
   }
 
   render() {

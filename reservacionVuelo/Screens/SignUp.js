@@ -72,7 +72,7 @@ export class SignUp extends Component {
       // Create a Google credential with the token
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
       // Sign-in the user with the credential
-      await auth().signInWithCredential(googleCredential).then(() => Alert.alert('Signed in with Google!'))
+      await auth().signInWithCredential(googleCredential).then(() => Alert.alert('Account created with Google!'),this.props.navigation.goBack())
     } catch (e) {
       Alert.alert(`Your google account couldn't be created: ${e.message}`);
     }
@@ -153,7 +153,7 @@ export class SignUp extends Component {
 
         <Text style={styles.bottomTextStyle}>
           Already have an acoount?
-          <Text style={styles.hyperlinkText}> Log in</Text>
+          <Text style={styles.hyperlinkText} onPress={() => this.props.navigation.goBack()}> Log in</Text>
         </Text>
       </View>
     );

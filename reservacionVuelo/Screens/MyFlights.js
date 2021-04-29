@@ -15,7 +15,7 @@ export class MyFlights extends Component {
     return (
 
       <View style={styles.myFlightsContainer}>
-        <Text style={styles.titleStyle}>My Flights</Text>
+        <Text style={styles.titleStyle}>{this.props.uid}My Flights</Text>
         <FlatList
           style={styles.cardPosition}
           data={dummyData}

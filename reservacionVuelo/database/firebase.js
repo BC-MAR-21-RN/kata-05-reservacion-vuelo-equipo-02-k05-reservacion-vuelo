@@ -7,7 +7,7 @@ var firebaseConfig = {
     projectId: "reservacion-vuelos",
     storageBucket: "reservacion-vuelos.appspot.com",
     messagingSenderId: "SENDER_ID",
-    appId: "APP_ID",
+    appId: "1:510894524531:android:da826a182ead57b6c48206",
     measurementId: "G-MEASUREMENT_ID",
   };
 

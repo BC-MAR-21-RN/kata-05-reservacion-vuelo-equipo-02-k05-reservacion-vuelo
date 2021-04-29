@@ -16,7 +16,8 @@ export class Login extends Component {
     super(props);
     this.state = {
       loggedIn: false,
-      userInfo: [],
+      uid: 'null',
+      user:[],
       userEmail: 'null',
       userPassword: 'null',
     }
@@ -49,7 +50,6 @@ export class Login extends Component {
   }
 
   loginButtons() {
-
     return (
       <View>
         <LoginButton
@@ -76,33 +76,28 @@ export class Login extends Component {
   }
 
   render() {
-
-    if (this.state.loggedIn === false) {
       return (
         <View style={styles.container}>
-         {this.header()}
-         {this.form()}
-         {this.loginButtons()}
+          {this.header()}
+          {this.form()}
+          {this.loginButtons()}
         </View>
       )
-    }
-    else {
-      return (
-        <MyFlights />
-      )
-    }
 
   }
 
   async userLogin() {
     try {
-      await auth().signInWithEmailAndPassword(this.state.userEmail, this.state.userPassword).then((res) => {
-        this.setState({
-          loggedIn: true,
-          userEmail: '',
-          userPassword: ''
-        })
-      })
+      const user = await auth().signInWithEmailAndPassword(this.state.userEmail, this.state.userPassword)
+          this.setState({
+            loggedIn: true,
+            userEmail: '',
+            userPassword: '',
+            uid: user.uid,
+            user: user,
+          })
+          console.log(user.user.email);
+        
     } catch (error) {
       Alert.alert(`${error.message}`)
     }
@@ -116,11 +111,15 @@ export class Login extends Component {
       // Create a Google credential with the token
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
       // Sign-in the user with the credential
-      await auth().signInWithCredential(googleCredential).then(() => this.setState({
+      const user = await auth().signInWithCredential(googleCredential)
+      
+      this.setState({
         loggedIn: true,
         userEmail: '',
-        userPassword: ''
-      }))
+        userPassword: '',
+        uid: user.uid ,
+        user: user,
+      })
     } catch (e) {
       Alert.alert(`You couldn't log in with google: ${e.message}`);
     }

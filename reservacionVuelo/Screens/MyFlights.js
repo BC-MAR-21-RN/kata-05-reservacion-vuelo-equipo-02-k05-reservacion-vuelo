@@ -5,15 +5,16 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { FlightCard } from '../components/flightCard';
 import dummyData from '../data/DummyData';
 
+import auth from '@react-native-firebase/auth';
+
+
 export class MyFlights extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    console.log(this.props)
     return (
-
       <View style={styles.myFlightsContainer}>
         <Text style={styles.titleStyle}>{this.props.uid}My Flights</Text>
         <FlatList
@@ -36,6 +37,11 @@ export class MyFlights extends Component {
         <TouchableHighlight style={styles.roundedButton}
           onPress={() => this.props.navigation.navigate('Booking')} >
           <Icon name="plus" style={styles.roundedButtonIcon} size={35} />
+        </TouchableHighlight>
+        <TouchableHighlight style={styles.roundedButton}
+          onPress={() => {
+            auth().signOut()}} >
+          <Icon name="sign-out" style={styles.roundedButtonIcon} size={35} />
         </TouchableHighlight>
       </View>
     );

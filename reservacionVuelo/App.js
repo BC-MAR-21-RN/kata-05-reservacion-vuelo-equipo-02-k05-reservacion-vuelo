@@ -13,7 +13,6 @@ const Stack = createStackNavigator();
 class App extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       loggedIn: false
     }
@@ -22,19 +21,15 @@ class App extends Component {
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.setState({loggedIn: true});
-        console.log('si');
-        return true;
+        this.setState({loggedIn: true});       
       } else {
-        this.setState({loggedIn: false});
-        console.log('no');
-        return false;
+        this.setState({loggedIn: false});       
       }
     });
   }
 
   render() {
-      return this.state.loggedIn === true? (
+      return this.state.loggedIn ? (
         <NavigationContainer>
           <Stack.Navigator
             initialRouteName="Myflights"

@@ -36,11 +36,19 @@ class Step extends Component {
   backButton() {
     return (
       <View style={styles.return}>
-        <TouchableOpacity
-          style={styles.returnButton}
-          onPress={this.props.prevState}>
-          <Icon name="chevron-left" size={30} color="#6075e6" />
-        </TouchableOpacity>
+        {
+          this.props.isFirst ? (
+
+            <View />
+
+          ) : (
+            <TouchableOpacity
+            style={styles.returnButton}
+            onPress={this.props.prevState}>
+            <Icon name="chevron-left" size={30} color="#6075e6" />
+          </TouchableOpacity>
+          )
+        }
       </View>
     );
   }
@@ -115,6 +123,7 @@ export class StepManager extends Component {
               nextStep: this._nextStep,
               prevState: this._prevStep,
               isLast: this.state.index === this.props.children.length - 1,
+              isFirst:this.state.index === 0,
               onChangeValue: this._onChangeValue,
               values: this.state.values,
             });

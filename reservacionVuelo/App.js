@@ -34,7 +34,7 @@ class App extends Component {
           <Stack.Navigator
             initialRouteName="Myflights"
             screenOptions={{headerShown: false}}>
-            <Stack.Screen name={'MyFlights'} component={MyFlights} />
+            <Stack.Screen name={'MyFlights'} component={MyFlights}/>
             <Stack.Screen name={'Booking'} component={Booking} />
           </Stack.Navigator>
         </NavigationContainer>

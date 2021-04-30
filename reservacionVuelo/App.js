@@ -1,31 +1,54 @@
-import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import React, { Component } from 'react';
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import { Login } from './Screens/Login';
+import { SignUp } from './Screens/SignUp';
+import { MyFlights } from './Screens/MyFlights';
+import { Booking } from './Screens/Booking';
 
-import {Booking} from './Screens/Booking';
-import {Login} from './Screens/Login';
-import {SignUp} from './Screens/SignUp';
+import firebase from '@react-native-firebase/app';
+
+const Stack = createStackNavigator();
 
 class App extends Component {
   constructor(props) {
-    super(props);
-    this.name = 'App';
+    super(props)
     this.state = {
-      respuesta: 'si',
-    };
+      loggedIn: false
+    }
   }
+
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({loggedIn: true});       
+      } else {
+        this.setState({loggedIn: false});       
+      }
+    });
+  }
+
   render() {
-    return <Booking />;
+      return this.state.loggedIn ? (
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Myflights"
+            screenOptions={{headerShown: false}}>
+            <Stack.Screen name={'MyFlights'} component={MyFlights} />
+            <Stack.Screen name={'Booking'} component={Booking} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      ) : (
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Login"
+            screenOptions={{headerShown: false}}>
+            <Stack.Screen name={'SignUp'} component={SignUp} />
+            <Stack.Screen name={'Login'} component={Login} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-});
 
 export default App;

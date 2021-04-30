@@ -1,12 +1,26 @@
-import React, {Component} from 'react';
-import {Alert, Text, TouchableHighlight, View} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import React, { Component } from 'react';
+import { Alert, Text, View } from 'react-native';
+
+import auth from '@react-native-firebase/auth'
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
+
+import { CustomCheckbox } from '../components/checkbox';
+import { CustomTextInput } from '../components/TextInput';
+import { SignUpButton } from '../components/SignUpButton';
+
 import styles from '../components/styles';
-import {CustomCheckbox} from '../components/checkbox';
-import {CustomTextInput} from '../components/TextInput';
 import * as myConst from '../components/constants';
 
+
+
+GoogleSignin.configure({
+  webClientId: "510894524531-02cf3bsilv0qmjuue7aeanog5v3109td.apps.googleusercontent.com",
+});
+
+
 export class SignUp extends Component {
+
   constructor() {
     super();
     this.state = {
@@ -28,23 +42,40 @@ export class SignUp extends Component {
       this.state.emailStatus === true &&
       this.state.checkBox === true
     ) {
-      Alert.alert('VALIDATIONS PASSED', ':)');
       this.SignUpEmail(this.state.name, this.state.email, this.state.password);
     } else {
-      Alert.alert('VALIDATIONS NOT PASSED', ':(');
+      Alert.alert('Fill or correct the required fields please!');
     }
   }
+
   SignUpEmail(name, email, password) {
-    /*/
-    TODO:
-    SignUp with email using firebase
-    /*/
+    auth().createUserWithEmailAndPassword(email, password)
+      .then(() => { Alert.alert(`${name}'s account successfully created!`) })
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          Alert.alert('ERROR: That email address is already in use!');
+        }
+        else if (error.code === 'auth/invalid-email') {
+          Alert.alert('ERROR: That email address is invalid!');
+        } else {
+          Alert.alert(`email account couldn't be created error: '${error}'`)
+        }
+      })
+
+
   }
-  SignUpGoogle() {
-    /**
-     * TODO:
-     * SIGNUP WITH GOOGLE USING FIREBASE
-     */
+
+  async SignUpGoogle() {
+    try {
+      // Get the users ID token
+      const { idToken } = await GoogleSignin.signIn();
+      // Create a Google credential with the token
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+      // Sign-in the user with the credential
+      await auth().signInWithCredential(googleCredential).then(() => Alert.alert('Account created with Google!'),this.props.navigation.goBack())
+    } catch (e) {
+      Alert.alert(`Your google account couldn't be created: ${e.message}`);
+    }
   }
 
   render() {
@@ -83,10 +114,10 @@ export class SignUp extends Component {
           textInputTitle={'Password'}
           password={true}
           onChangeText={text => {
-            this.setState({password: text});
+            this.setState({ password: text });
             this.state.password.length >= 5
-              ? this.setState({passwordStatus: true})
-              : this.setState({passwordStatus: false});
+              ? this.setState({ passwordStatus: true })
+              : this.setState({ passwordStatus: false });
           }}
           checkError={this.state.passwordStatus === false}
           errorMessage={myConst.PASSWORD_ERROR_MSJ}
@@ -95,7 +126,7 @@ export class SignUp extends Component {
         {/**CheckBoxes */}
         <CustomCheckbox
           value={this.state.checkBox}
-          onValueChange={() => this.setState({checkBox: !this.state.checkBox})}
+          onValueChange={() => this.setState({ checkBox: !this.state.checkBox })}
           text={myConst.TP_AGREEMENT.substr(0, 14)}
           labelText={myConst.TP_AGREEMENT.substr(15, 5)}
           secondaryText={myConst.TP_AGREEMENT.substr(20, 4)}
@@ -107,31 +138,22 @@ export class SignUp extends Component {
         <CustomCheckbox
           value={this.state.checkBoxSub}
           onValueChange={() =>
-            this.setState({checkBoxSub: !this.state.checkBoxSub})
+            this.setState({ checkBoxSub: !this.state.checkBoxSub })
           }
           text={myConst.SUB_MSJ}
         />
 
         {/* Buttons */}
 
-        <TouchableHighlight
-          style={styles.buttonStyle}
-          onPress={() => {
-            this.check();
-          }}>
-          <Text style={styles.buttonTextStyle}>Sign Up</Text>
-        </TouchableHighlight>
+        <SignUpButton onPress={() => this.check()} title={'Sign Up'} />
 
         <Text style={styles.bottomTextStyle}>or</Text>
 
-        <TouchableHighlight style={styles.buttonStyle}>
-          <Icon name="google" color={'white'} size={15}>
-            <Text style={styles.buttonTextStyle}> Login with Google</Text>
-          </Icon>
-        </TouchableHighlight>
+        <SignUpButton onPress={() => this.SignUpGoogle()} title={' Sign Up with google'} icon={'google'} />
+
         <Text style={styles.bottomTextStyle}>
           Already have an acoount?
-          <Text style={styles.hyperlinkText}>Log in</Text>
+          <Text style={styles.hyperlinkText} onPress={() => this.props.navigation.goBack()}> Log in</Text>
         </Text>
       </View>
     );

@@ -1,36 +1,4 @@
 const dummyData = [
-  {
-    id: 1,
-    departureCity: 'AGS',
-    departureCountry: 'MEXICO',
-    arrivalCity: 'LA',
-    arrivalCountry: 'USA',
-    year: 2021,
-    month: 'April',
-    day: 30,
-    passangers: 2,
-  },
-  {
-    id: 2,
-    departureCity: 'COL',
-    departureCountry: 'MEXICO',
-    arrivalCity: 'NY',
-    arrivalCountry: 'USA',
-    year: 2021,
-    month: 'April',
-    day: 22,
-    passangers: 3,
-  },
-  {
-    id: 3,
-    departureCity: 'MED ',
-    departureCountry: 'CDMX',
-    arrivalCity: 'BRL',
-    arrivalCountry: 'GERMANY',
-    year: 2021,
-    month: 'April',
-    day: 28,
-    passangers: 3,
-  },
+  
 ];
 export default dummyData;

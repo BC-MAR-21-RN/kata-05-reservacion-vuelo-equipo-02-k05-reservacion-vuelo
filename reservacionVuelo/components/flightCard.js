@@ -17,7 +17,11 @@ export class FlightCard extends Component {
             <Text style={styles.cityText}>{this.props.depCity}</Text>
             <Text style={styles.countryText}>{this.props.depCountry}</Text>
           </View>
-          <Icon name="plane" style={styles.planeIcon} size={25} />
+          <View style={styles.absoluteIcon}>
+            <View style={styles.relativeIcon}>
+              <Icon name="plane" style={styles.planeIcon} size={25} />
+            </View>
+          </View>
           <View>
             <Text style={styles.cityText}>{this.props.arrCity}</Text>
             <Text style={styles.countryText}>{this.props.arrCountry}</Text>
@@ -28,7 +32,7 @@ export class FlightCard extends Component {
             {MONTHS[this.props.month - 1]} {this.props.day}, {this.props.year}
           </Text>
           <Text style={styles.bottonFlightDetsText}>
-            {this.props.passangers} passanger(s)
+            {this.props.passangers} passangers
           </Text>
         </View>
       </View>

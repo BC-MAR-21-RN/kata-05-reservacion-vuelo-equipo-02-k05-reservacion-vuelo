@@ -4,12 +4,14 @@ const styles = StyleSheet.create({
   mainContainer: {
     paddingHorizontal: 30,
     flex: 1,
+    backgroundColor: '#fafafa',
   },
   myFlightsContainer: {
     paddingHorizontal: 30,
     paddingVertical: 10,
     flex: 1,
     justifyContent: 'space-between',
+    backgroundColor: '#fafafa',
   },
   titleStyle: {
     fontSize: 40,
@@ -75,8 +77,6 @@ const styles = StyleSheet.create({
   flightDets: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomWidth: 2,
-    borderBottomColor: 'black',
     paddingVertical: 10,
   },
   cityText: {
@@ -95,6 +95,10 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
   },
+  separator: {
+    borderBottomWidth: 2,
+    borderBottomColor: 'black',
+  },
   /*My Flight Styles */
   roundedButton: {
     height: 70,
@@ -108,6 +112,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     top: '25%',
     position: 'absolute',
+  },
+  absoluteIcon: {
+    position: 'absolute',
+    left: '50%',
+  },
+  relativeIcon: {
+    position: 'relative',
+    left: '-50%',
   },
 });
 export default styles;

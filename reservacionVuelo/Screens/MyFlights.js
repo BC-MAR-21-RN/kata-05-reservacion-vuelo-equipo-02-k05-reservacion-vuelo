@@ -70,16 +70,19 @@ export class MyFlights extends Component {
           data={this.state.firestoreData}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
-            <FlightCard
-              depCity={item.DepCity}
-              depCountry={item.DepCoun}
-              arrCity={item.ArrCity}
-              arrCountry={item.ArrCoun}
-              year={item.Date.Year}
-              month={item.Date.Month}
-              day={item.Date.Day}
-              passangers={item.Passengers}
-            />
+            <View>
+              <FlightCard
+                depCity={item.DepCity}
+                depCountry={item.DepCoun}
+                arrCity={item.ArrCity}
+                arrCountry={item.ArrCoun}
+                year={item.Date.Year}
+                month={item.Date.Month}
+                day={item.Date.Day}
+                passangers={item.Passengers}
+              />
+              <View style={styles.separator} />
+            </View>
           )}
         />
         {this.buttons()}

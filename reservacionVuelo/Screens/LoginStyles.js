@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     paddingLeft: 30,
     paddingRight: 30,
+    backgroundColor: '#fafafa',
   },
   welcomeText: {
     fontWeight: '700',

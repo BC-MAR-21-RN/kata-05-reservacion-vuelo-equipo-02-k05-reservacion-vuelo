@@ -46,6 +46,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 30,
     paddingRight: 30,
     paddingTop: 10,
+    backgroundColor: '#fafafa',
   },
   label: {
     fontWeight: '700',

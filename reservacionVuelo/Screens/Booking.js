@@ -11,6 +11,79 @@ export class Booking extends Component {
     super(props);
   }
 
+  datePickerStep() {
+    return (
+      <StepManager.Step>
+        {({onChangeValue, values}) => (
+          <View>
+            <ReactNativeCalendar
+              onChangeValue={onChangeValue}
+              name="date"
+              day="day"
+              month="month"
+              year="year"
+            />
+          </View>
+        )}
+      </StepManager.Step>
+    );
+  }
+
+  submitInfo() {
+    return (
+      <StepManager.Step>
+        {({register}) => (
+          <View style={styles.componentContainer}>
+            <Text style={styles.label}>Your request was received.</Text>
+            <TouchableOpacity
+              accessibilityLabel="Submit login information"
+              style={styles.filledButton}
+              onPress={() => {
+                register();
+                this.props.navigation.navigate('MyFlights');
+              }}>
+              <Text style={styles.filledButtonText}>FINISH</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      </StepManager.Step>
+    );
+  }
+
+  departureData() {
+    return (
+      <StepManager.Step>
+        {({onChangeValue, values}) => (
+          <View>
+            <BookingQuestion
+              onChangeValue={onChangeValue}
+              country="departureCountry"
+              city="departureCity"
+              question="Where are you now?"
+            />
+          </View>
+        )}
+      </StepManager.Step>
+    );
+  }
+
+  arrivalData() {
+    return (
+      <StepManager.Step>
+        {({onChangeValue, values}) => (
+          <View>
+            <BookingQuestion
+              onChangeValue={onChangeValue}
+              country="arrivalCountry"
+              city="arrivalCity"
+              question="Where are you flying to?"
+            />
+          </View>
+        )}
+      </StepManager.Step>
+    );
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -26,43 +99,9 @@ export class Booking extends Component {
             year: '',
             passengers: '',
           }}>
-          <StepManager.Step>
-            {({onChangeValue, values}) => (
-              <View>
-                <BookingQuestion
-                  onChangeValue={onChangeValue}
-                  country="departureCountry"
-                  city="departureCity"
-                  question="Where are you now?"
-                />
-              </View>
-            )}
-          </StepManager.Step>
-          <StepManager.Step>
-            {({onChangeValue, values}) => (
-              <View>
-                <BookingQuestion
-                  onChangeValue={onChangeValue}
-                  country="arrivalCountry"
-                  city="arrivalCity"
-                  question="Where are you flying to?"
-                />
-              </View>
-            )}
-          </StepManager.Step>
-          <StepManager.Step>
-            {({onChangeValue, values}) => (
-              <View>
-                <ReactNativeCalendar
-                  onChangeValue={onChangeValue}
-                  name="date"
-                  day="day"
-                  month="month"
-                  year="year"
-                />
-              </View>
-            )}
-          </StepManager.Step>
+          {this.departureData()}
+          {this.arrivalData()}
+          {this.datePickerStep()}
           <StepManager.Step>
             {({onChangeValue, values}) => (
               <View>
@@ -70,22 +109,7 @@ export class Booking extends Component {
               </View>
             )}
           </StepManager.Step>
-          <StepManager.Step>
-            {({register}) => (
-              <View style={styles.componentContainer}>
-                <Text style={styles.label}>Your request was received.</Text>
-                <TouchableOpacity
-                  accessibilityLabel="Submit login information"
-                  style={styles.filledButton}
-                  onPress={() => {
-                    register();
-                    this.props.navigation.navigate('MyFlights');
-                  }}>
-                  <Text style={styles.filledButtonText}>FINISH</Text>
-                </TouchableOpacity>
-              </View>
-            )}
-          </StepManager.Step>
+          {this.submitInfo()}
         </StepManager>
       </View>
     );

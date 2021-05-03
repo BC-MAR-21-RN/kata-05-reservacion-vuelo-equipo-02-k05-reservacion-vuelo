@@ -6,3 +6,18 @@ export const PASSWORD_ERROR_MSJ = 'Write a password whith 6 or more characters';
 export const TP_ERROR_MSJ = 'Terms and privacy policy must be checked';
 export const SUB_MSJ = 'Subscribe for select product update';
 export const TP_AGREEMENT = 'I agree to the Terms and Privacy Policy.';
+
+export const MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];

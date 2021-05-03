@@ -1,18 +1,15 @@
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { BookingQuestion } from '../components/BookingQuestion';
-import { ReactNativeCalendar } from '../components/Calendar';
-import { NumberWheel } from '../components/PassengerNumber';
-import { StepManager } from '../components/StepManager';
-import { styles } from '../components/BookingStyles';
-
-import firestore from '@react-native-firebase/firestore';
+import React, {Component} from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
+import {BookingQuestion} from '../components/BookingQuestion';
+import {ReactNativeCalendar} from '../components/Calendar';
+import {NumberWheel} from '../components/PassengerNumber';
+import {StepManager} from '../components/StepManager';
+import {styles} from '../components/BookingStyles';
 
 export class Booking extends Component {
   constructor(props) {
     super(props);
   }
-
 
   render() {
     return (
@@ -30,7 +27,7 @@ export class Booking extends Component {
             passengers: '',
           }}>
           <StepManager.Step>
-            {({ onChangeValue, values }) => (
+            {({onChangeValue, values}) => (
               <View>
                 <BookingQuestion
                   onChangeValue={onChangeValue}
@@ -42,7 +39,7 @@ export class Booking extends Component {
             )}
           </StepManager.Step>
           <StepManager.Step>
-            {({ onChangeValue, values }) => (
+            {({onChangeValue, values}) => (
               <View>
                 <BookingQuestion
                   onChangeValue={onChangeValue}
@@ -54,7 +51,7 @@ export class Booking extends Component {
             )}
           </StepManager.Step>
           <StepManager.Step>
-            {({ onChangeValue, values }) => (
+            {({onChangeValue, values}) => (
               <View>
                 <ReactNativeCalendar
                   onChangeValue={onChangeValue}
@@ -67,16 +64,25 @@ export class Booking extends Component {
             )}
           </StepManager.Step>
           <StepManager.Step>
-            {({ onChangeValue, values }) => (
+            {({onChangeValue, values}) => (
               <View>
                 <NumberWheel onChangeValue={onChangeValue} name="passengers" />
               </View>
             )}
           </StepManager.Step>
           <StepManager.Step>
-            {() => (
+            {({register}) => (
               <View style={styles.componentContainer}>
                 <Text style={styles.label}>Your request was received.</Text>
+                <TouchableOpacity
+                  accessibilityLabel="Submit login information"
+                  style={styles.filledButton}
+                  onPress={() => {
+                    register();
+                    this.props.navigation.navigate('MyFlights');
+                  }}>
+                  <Text style={styles.filledButtonText}>FINISH</Text>
+                </TouchableOpacity>
               </View>
             )}
           </StepManager.Step>

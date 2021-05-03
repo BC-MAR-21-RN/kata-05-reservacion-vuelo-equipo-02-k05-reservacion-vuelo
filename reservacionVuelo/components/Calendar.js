@@ -12,22 +12,7 @@ export class ReactNativeCalendar extends Component {
   }
 
   _onChangeText = text => {
-    let months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-
-    this.props.onChangeValue(this.props.month, months[text.month - 1]);
+    this.props.onChangeValue(this.props.month, text.month);
     this.props.onChangeValue(this.props.day, text.day);
     this.props.onChangeValue(this.props.year, text.year);
     this.props.onChangeValue(this.props.name, text);

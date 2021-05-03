@@ -4,8 +4,13 @@ import {styles} from '../components/BookingStyles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {FlightCard} from './flightCard';
 
-class Step extends Component {
-  state = {};
+import {DataHandler} from './DataHandler';
+
+export class Step extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
   render() {
     return (
@@ -26,6 +31,7 @@ class Step extends Component {
         <View style={styles.questionText}>
           {this.props.children({
             onChangeValue: this.props.onChangeValue,
+            register: this.props.register,
           })}
         </View>
         {this.nextButton()}
@@ -36,19 +42,15 @@ class Step extends Component {
   backButton() {
     return (
       <View style={styles.return}>
-        {
-          this.props.isFirst ? (
-
-            <View />
-
-          ) : (
-            <TouchableOpacity
+        {this.props.isFirst ? (
+          <View />
+        ) : (
+          <TouchableOpacity
             style={styles.returnButton}
             onPress={this.props.prevState}>
             <Icon name="chevron-left" size={30} color="#6075e6" />
           </TouchableOpacity>
-          )
-        }
+        )}
       </View>
     );
   }
@@ -57,12 +59,7 @@ class Step extends Component {
     return (
       <View style={styles.button}>
         {this.props.isLast ? (
-          <TouchableOpacity
-            accessibilityLabel="Submit login information"
-            style={styles.filledButton}
-            onPress={this.props.nextStep}>
-            <Text style={styles.filledButtonText}>FINISH</Text>
-          </TouchableOpacity>
+          <View />
         ) : (
           <TouchableOpacity
             accessibilityLabel="Submit login information"
@@ -77,6 +74,11 @@ class Step extends Component {
 }
 
 export class StepManager extends Component {
+  constructor(props) {
+    super(props);
+    this.dataHandler = new DataHandler();
+  }
+
   static Step = props => <Step style={styles.stepContainer} {...props} />;
 
   state = {
@@ -112,6 +114,10 @@ export class StepManager extends Component {
     }));
   };
 
+  _register = () => {
+    this.dataHandler.registerBooking(this.state.values);
+  };
+
   render() {
     console.log('values', this.state);
     return (
@@ -123,8 +129,9 @@ export class StepManager extends Component {
               nextStep: this._nextStep,
               prevState: this._prevStep,
               isLast: this.state.index === this.props.children.length - 1,
-              isFirst:this.state.index === 0,
+              isFirst: this.state.index === 0,
               onChangeValue: this._onChangeValue,
+              register: this._register,
               values: this.state.values,
             });
           }

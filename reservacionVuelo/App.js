@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
-import { Login } from './Screens/Login';
-import { SignUp } from './Screens/SignUp';
-import { MyFlights } from './Screens/MyFlights';
-import { Booking } from './Screens/Booking';
+import React, {Component} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {Login} from './Screens/Login';
+import {SignUp} from './Screens/SignUp';
+import {MyFlights} from './Screens/MyFlights';
+import {Booking} from './Screens/Booking';
+import {Step} from './components/StepManager';
 
 import firebase from '@react-native-firebase/app';
 
@@ -12,42 +13,43 @@ const Stack = createStackNavigator();
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      loggedIn: false
-    }
+      loggedIn: false,
+    };
   }
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.setState({loggedIn: true});       
+        this.setState({loggedIn: true});
       } else {
-        this.setState({loggedIn: false});       
+        this.setState({loggedIn: false});
       }
     });
   }
 
   render() {
-      return this.state.loggedIn ? (
-        <NavigationContainer>
-          <Stack.Navigator
-            initialRouteName="Myflights"
-            screenOptions={{headerShown: false}}>
-            <Stack.Screen name={'MyFlights'} component={MyFlights}/>
-            <Stack.Screen name={'Booking'} component={Booking} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      ) : (
-        <NavigationContainer>
-          <Stack.Navigator
-            initialRouteName="Login"
-            screenOptions={{headerShown: false}}>
-            <Stack.Screen name={'SignUp'} component={SignUp} />
-            <Stack.Screen name={'Login'} component={Login} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      )
+    return this.state.loggedIn ? (
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Myflights"
+          screenOptions={{headerShown: false}}>
+          <Stack.Screen name={'MyFlights'} component={MyFlights} />
+          <Stack.Screen name={'Booking'} component={Booking} />
+          <Stack.Screen name={'Step'} component={Step} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    ) : (
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Login"
+          screenOptions={{headerShown: false}}>
+          <Stack.Screen name={'SignUp'} component={SignUp} />
+          <Stack.Screen name={'Login'} component={Login} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
   }
 }
 

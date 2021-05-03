@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
+import {MONTHS} from './constants';
 
 export class FlightCard extends Component {
   constructor() {
@@ -24,7 +25,7 @@ export class FlightCard extends Component {
         </View>
         <View style={styles.flightDets}>
           <Text style={styles.bottonFlightDetsText}>
-            {this.props.month} {this.props.day}, {this.props.year}
+            {MONTHS[this.props.month - 1]} {this.props.day}, {this.props.year}
           </Text>
           <Text style={styles.bottonFlightDetsText}>
             {this.props.passangers} passanger(s)

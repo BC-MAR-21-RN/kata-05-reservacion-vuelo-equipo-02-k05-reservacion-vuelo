@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Text, TouchableHighlight} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import styles from './styles';
+import styles from '../styles/styles';
 
 export class SignUpButton extends Component {
   render() {

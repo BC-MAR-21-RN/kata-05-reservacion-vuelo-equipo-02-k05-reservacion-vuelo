@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, TextInput} from 'react-native';
-import styles from './styles';
+import styles from '../styles/styles';
 
 export class CustomTextInput extends Component {
   render() {

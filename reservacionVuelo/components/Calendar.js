@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import {Calendar} from 'react-native-calendars';
-import {styles} from '../components/BookingStyles';
+import {styles} from '../styles/BookingStyles';
 
 export class ReactNativeCalendar extends Component {
   constructor(props) {

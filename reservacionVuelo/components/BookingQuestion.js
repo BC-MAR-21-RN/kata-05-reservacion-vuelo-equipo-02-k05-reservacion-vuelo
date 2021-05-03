@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, TextInput, Text} from 'react-native';
-import {styles} from '../components/BookingStyles';
+import {styles} from '../styles/BookingStyles';
 
 export class BookingQuestion extends Component {
   constructor(props) {

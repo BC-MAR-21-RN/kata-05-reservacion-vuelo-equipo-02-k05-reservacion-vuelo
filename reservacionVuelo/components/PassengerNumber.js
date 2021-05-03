@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import {WheelPicker} from 'react-native-wheel-picker-android';
-import {styles} from '../components/BookingStyles';
+import {styles} from '../styles/BookingStyles';
 
 export class NumberWheel extends Component {
   constructor(props) {

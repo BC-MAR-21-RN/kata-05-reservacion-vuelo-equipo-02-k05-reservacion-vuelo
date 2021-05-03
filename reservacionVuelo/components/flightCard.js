@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import styles from './styles';
-import {MONTHS} from './constants';
+import styles from '../styles/styles';
+import {MONTHS} from '../Utils/constants';
 
 export class FlightCard extends Component {
   constructor() {

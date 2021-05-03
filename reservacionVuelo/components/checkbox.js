@@ -1,7 +1,7 @@
 import CheckBox from '@react-native-community/checkbox';
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
-import styles from './styles';
+import styles from '../styles/styles';
 
 export class CustomCheckbox extends Component {
   render() {

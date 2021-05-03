@@ -4,7 +4,7 @@ import {BookingQuestion} from '../components/BookingQuestion';
 import {ReactNativeCalendar} from '../components/Calendar';
 import {NumberWheel} from '../components/PassengerNumber';
 import {StepManager} from '../components/StepManager';
-import {styles} from '../components/BookingStyles';
+import {styles} from '../styles/BookingStyles';
 
 export class Booking extends Component {
   constructor(props) {

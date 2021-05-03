@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {styles} from '../components/BookingStyles';
+import {styles} from '../styles/BookingStyles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {FlightCard} from './flightCard';
 
-import {DataHandler} from './DataHandler';
+import {DataHandler} from '../Utils/DataHandler';
 
 export class Step extends Component {
   constructor(props) {
@@ -119,7 +119,6 @@ export class StepManager extends Component {
   };
 
   render() {
-    console.log('values', this.state);
     return (
       <View style={styles.stepContainer}>
         {React.Children.map(this.props.children, (el, index) => {

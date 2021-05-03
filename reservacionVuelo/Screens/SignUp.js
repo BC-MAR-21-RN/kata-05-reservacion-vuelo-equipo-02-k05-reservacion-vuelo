@@ -8,8 +8,8 @@ import {CustomCheckbox} from '../components/checkbox';
 import {CustomTextInput} from '../components/TextInput';
 import {SignUpButton} from '../components/SignUpButton';
 
-import styles from '../components/styles';
-import * as myConst from '../components/constants';
+import styles from '../styles/styles';
+import * as myConst from '../Utils/constants';
 
 GoogleSignin.configure({
   webClientId:
@@ -79,13 +79,34 @@ export class SignUp extends Component {
     }
   }
 
-  render() {
+  checkBoxes() {
     return (
-      <View style={styles.mainContainer}>
-        <Text style={styles.titleStyle}>Sign Up</Text>
+      <View>
+        <CustomCheckbox
+          value={this.state.checkBox}
+          onValueChange={() => this.setState({checkBox: !this.state.checkBox})}
+          text={myConst.TP_AGREEMENT.substr(0, 14)}
+          labelText={myConst.TP_AGREEMENT.substr(15, 5)}
+          secondaryText={myConst.TP_AGREEMENT.substr(20, 4)}
+          secondaryLabelText={myConst.TP_AGREEMENT.substr(25, 16)}
+          check={this.state.checkBox}
+          errorMessage={myConst.TP_ERROR_MSJ}
+        />
 
-        {/**TextInputs */}
+        <CustomCheckbox
+          value={this.state.checkBoxSub}
+          onValueChange={() =>
+            this.setState({checkBoxSub: !this.state.checkBoxSub})
+          }
+          text={myConst.SUB_MSJ}
+        />
+      </View>
+    );
+  }
 
+  textInputs() {
+    return (
+      <View>
         <CustomTextInput
           textInputTitle={'First Name'}
           onChangeText={text =>
@@ -97,7 +118,6 @@ export class SignUp extends Component {
           checkError={this.state.nameStatus === false}
           errorMessage={myConst.NAME_ERROR_MSJ}
         />
-
         <CustomTextInput
           textInputTitle={'E-mail'}
           keyboardType={'email-address'}
@@ -123,29 +143,13 @@ export class SignUp extends Component {
           checkError={this.state.passwordStatus === false}
           errorMessage={myConst.PASSWORD_ERROR_MSJ}
         />
+      </View>
+    );
+  }
 
-        {/**CheckBoxes */}
-        <CustomCheckbox
-          value={this.state.checkBox}
-          onValueChange={() => this.setState({checkBox: !this.state.checkBox})}
-          text={myConst.TP_AGREEMENT.substr(0, 14)}
-          labelText={myConst.TP_AGREEMENT.substr(15, 5)}
-          secondaryText={myConst.TP_AGREEMENT.substr(20, 4)}
-          secondaryLabelText={myConst.TP_AGREEMENT.substr(25, 16)}
-          check={this.state.checkBox}
-          errorMessage={myConst.TP_ERROR_MSJ}
-        />
-
-        <CustomCheckbox
-          value={this.state.checkBoxSub}
-          onValueChange={() =>
-            this.setState({checkBoxSub: !this.state.checkBoxSub})
-          }
-          text={myConst.SUB_MSJ}
-        />
-
-        {/* Buttons */}
-
+  buttons() {
+    return (
+      <View>
         <SignUpButton onPress={() => this.check()} title={'Sign Up'} />
 
         <Text style={styles.bottomTextStyle}>or</Text>
@@ -155,6 +159,21 @@ export class SignUp extends Component {
           title={' Sign Up with google'}
           icon={'google'}
         />
+      </View>
+    );
+  }
+
+  render() {
+    return (
+      <View style={styles.mainContainer}>
+        <Text style={styles.titleStyle}>Sign Up</Text>
+
+        {/**TextInputs */}
+        {this.textInputs()}
+        {/**CheckBoxes */}
+        {this.checkBoxes()}
+        {/* Buttons */}
+        {this.buttons()}
 
         <Text style={styles.bottomTextStyle}>
           Already have an acoount?

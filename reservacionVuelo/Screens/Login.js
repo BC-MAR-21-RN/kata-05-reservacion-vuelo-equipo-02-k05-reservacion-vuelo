@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Alert} from 'react-native';
 import {LoginButton} from '../components/loginButton';
-import {styles} from '../Screens/LoginStyles';
+import {styles} from '../styles/LoginStyles';
 import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {MyFlights} from './MyFlights';

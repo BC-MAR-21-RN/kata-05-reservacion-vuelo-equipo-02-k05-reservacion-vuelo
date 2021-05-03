@@ -29,10 +29,11 @@ export class FlightCard extends Component {
         </View>
         <View style={styles.flightDets}>
           <Text style={styles.bottonFlightDetsText}>
-            {MONTHS[this.props.month - 1]} {this.props.day}, {this.props.year}
+            {MONTHS[this.props.month - 1]} {this.props.day}
+            {this.props.day ? ',' : ''} {this.props.year}
           </Text>
           <Text style={styles.bottonFlightDetsText}>
-            {this.props.passangers} passangers
+            {this.props.passangers} {this.props.passangers ? 'passengers' : ''}
           </Text>
         </View>
       </View>

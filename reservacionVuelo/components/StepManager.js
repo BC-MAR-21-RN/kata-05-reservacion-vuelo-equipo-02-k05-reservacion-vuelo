@@ -9,10 +9,17 @@ import {DataHandler} from '../Utils/DataHandler';
 export class Step extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.steps = [
+      ['departureCity'],
+      ['arrivalCity'],
+      ['day'],
+      ['passengers'],
+      ['departureCountry'],
+    ];
   }
 
   render() {
+    console.log(this.props.values);
     return (
       <View style={styles.stepContainer}>
         {this.backButton()}
@@ -55,6 +62,16 @@ export class Step extends Component {
     );
   }
 
+  validation() {
+    let val = false;
+
+    if (this.props.values[this.steps[this.props.currentIndex][0]] !== '') {
+      val = true;
+    }
+
+    return val;
+  }
+
   nextButton() {
     return (
       <View style={styles.button}>
@@ -63,7 +80,12 @@ export class Step extends Component {
         ) : (
           <TouchableOpacity
             accessibilityLabel="Submit login information"
-            style={styles.filledButton}
+            disabled={!this.validation()}
+            style={
+              !this.validation()
+                ? styles.filledButtonDisabled
+                : styles.filledButton
+            }
             onPress={this.props.nextStep}>
             <Text style={styles.filledButtonText}>NEXT</Text>
           </TouchableOpacity>
@@ -87,6 +109,7 @@ export class StepManager extends Component {
     values: {
       ...this.props.initialValues,
     },
+    disabled: true,
   };
 
   _nextStep = () => {
@@ -111,6 +134,7 @@ export class StepManager extends Component {
         ...prevState.values,
         [name]: value,
       },
+      disabled: false,
     }));
   };
 
@@ -132,6 +156,7 @@ export class StepManager extends Component {
               onChangeValue: this._onChangeValue,
               register: this._register,
               values: this.state.values,
+              disabled: this.state.disabled,
             });
           }
 

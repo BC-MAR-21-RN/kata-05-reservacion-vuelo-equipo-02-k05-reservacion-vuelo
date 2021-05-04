@@ -27,6 +27,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 15,
   },
+  filledButtonDisabled: {
+    borderRadius: 10,
+    backgroundColor: '#b6b7ba',
+    alignItems: 'center',
+    padding: 15,
+  },
   filledButtonText: {
     color: '#ffff',
     fontWeight: '700',

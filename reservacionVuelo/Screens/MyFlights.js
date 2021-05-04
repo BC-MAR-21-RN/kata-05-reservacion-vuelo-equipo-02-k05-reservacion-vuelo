@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, FlatList } from 'react-native';
+import React, {Component} from 'react';
+import {View, Text, TouchableHighlight, FlatList} from 'react-native';
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { FlightCard } from '../components/flightCard';
+import {FlightCard} from '../components/flightCard';
 
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -13,13 +13,11 @@ export class MyFlights extends Component {
     super(props);
     this.state = {
       uid: '',
-      firestoreData: []
+      firestoreData: [],
     };
     this.getFlights();
     this.listener = this.updateData();
   }
-
-
 
   buttons() {
     return (
@@ -29,7 +27,7 @@ export class MyFlights extends Component {
           onPress={() => this.props.navigation.navigate('Booking')}>
           <Icon name="plus" style={styles.roundedButtonIcon} size={35} />
         </TouchableHighlight>
-       {/* <TouchableHighlight
+        {/* <TouchableHighlight
           style={styles.roundedButton}
           onPress={() => {
             auth().signOut();
@@ -63,7 +61,7 @@ export class MyFlights extends Component {
             doc._data.id = index;
             dataArray.push(doc._data);
           });
-          this.setState({ firestoreData: dataArray });
+          this.setState({firestoreData: dataArray});
         });
     } catch (error) {
       console.log(error);
@@ -78,7 +76,7 @@ export class MyFlights extends Component {
           style={styles.cardPosition}
           data={this.state.firestoreData}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => (
+          renderItem={({item}) => (
             <View>
               <FlightCard
                 depCity={item.DepCity}
